@@ -16,10 +16,13 @@ Projeto de automação desenvolvido em Python para organizar arquivos automatica
   * Planilhas
   * Músicas
   * Vídeos
-[]Separar arquivo por data
-
 ---
 
+## Profissionalizando
+
+* Separar aquivos por datas
+* Versão automatica (Rodar sozinho)
+  []rodar sozinho
 
 ## 🛠️ Tecnologias utilizadas
 
