@@ -20,9 +20,10 @@ Projeto de automação desenvolvido em Python para organizar arquivos automatica
 
 ## Profissionalizando
 
-* Separar aquivos por datas
-* Versão automatica (Rodar sozinho)
-  []rodar sozinho
+- [ ] Separar aquivos por datas
+- [ ] Versão automatica (Rodar Sozinho)
+- [ ] Versão com interface
+- [ ] Trannsformar em app executavel (.exe)
 
 ## 🛠️ Tecnologias utilizadas
 
