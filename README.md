@@ -18,7 +18,7 @@ Projeto de automação desenvolvido em Python para organizar arquivos automatica
   * Vídeos
 ---
 
-## Profissionalizando
+## 🏆Profissionalizando
 
 - [ ] Separar aquivos por datas
 - [ ] Versão automatica (Rodar Sozinho)
