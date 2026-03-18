@@ -1,14 +1,14 @@
 import os #trabalha com arquivos e pastas
 import shutil #move arquivos
 
-caminho = "C:/Users/arthu/Downloads/Photos-3-001"
+caminho = "C:/Users/arthu/Downloads"
 
 pastas = {
     "Imagens": [".png", ".jpg", ".jpeg", ".heic"],
     "Documentos": [".pdf", ".txt", ".docx"],
     "Planilhas": [".xlsx", ".csv"],
     "Musicas": [".mp3", ".wav"],
-    "Videos": [".mp4", ".mkv"]
+    "Videos": [".mp4", ".mkv", ".mov"]
 }
 
 for arquivo in os.listdir(caminho):
