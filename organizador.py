@@ -35,9 +35,9 @@ def organizar():
                             os.mkdir(caminho_pasta)
                         
                         shutil.move(caminho_arquivo, os.path.join(caminho_pasta, arquivo))
-                        arquivo_movido += 1
+                        arquivos_movidos += 1
 
-            messagebox.showinfo("Sucesso", f"{arquivos_movidos} arquivos organizados!")
+        messagebox.showinfo("Sucesso", f"{arquivos_movidos} arquivos organizados!")
 
     except Exception as e:
         messagebox.showerror("Erro", str(e)) #mostra erro na tela
