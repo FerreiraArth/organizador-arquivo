@@ -1,5 +1,8 @@
 import os #trabalha com arquivos e pastas
 import shutil #move arquivos
+import tkinter as tk #Bibiblioteca para criar interface
+from tkinter import messagebox #Importa janela de alerta(PopUp)
+
 
 caminho = "C:/Users/arthu/Downloads"
 
@@ -11,23 +14,43 @@ pastas = {
     "Videos": [".mp4", ".mkv", ".mov"]
 }
 
-for arquivo in os.listdir(caminho):
-    caminho_arquivo = os.path.join(caminho, arquivo)
+#Função principal
+def organizar():
+    try:
+        arquivos_movidos = 0
+        for arquivo in os.listdir(caminho):
+            caminho_arquivo = os.path.join(caminho, arquivo)
 
-    #ignora pastas
-    if os.path.isfile(caminho_arquivo):
-        _, extensao = os.path.splitext(arquivo)
+            #ignora pastas
+            if os.path.isfile(caminho_arquivo):
+                _, extensao = os.path.splitext(arquivo)
 
-        for pasta, extensoes in pastas.items():
+                for pasta, extensoes in pastas.items():
 
-            if extensao.lower() in extensoes: 
-                caminho_pasta = os.path.join(caminho, pasta)
+                    if extensao.lower() in extensoes: 
+                        caminho_pasta = os.path.join(caminho, pasta)
 
-                #Cria pasta se não existir
-                if not os.path.exists(caminho_pasta):
-                    os.mkdir(caminho_pasta)
-                
-                shutil.move(caminho_arquivo, os.path.join(caminho_pasta, arquivo))
+                        #Cria pasta se não existir
+                        if not os.path.exists(caminho_pasta):
+                            os.mkdir(caminho_pasta)
+                        
+                        shutil.move(caminho_arquivo, os.path.join(caminho_pasta, arquivo))
+                        arquivo_movido += 1
 
-                print(f"Movido: {arquivo} -> {pasta}")
-                break
+            messagebox.showinfo("Sucesso", f"{arquivos_movidos} arquivos organizados!")
+
+    except Exception as e:
+        messagebox.showerror("Erro", str(e)) #mostra erro na tela
+
+#INTERFACE
+janela = tk.Tk()
+janela.title("Organizador de Arquivo")
+janela.geometry("300x200")
+
+titulo = tk.Label(janela, text="Organizador de Arquivo", font=("Arial", 12)) #Pompieri
+titulo.pack(pady=20)
+
+botao = tk.Button(janela, text="Organizar Arquivos", command=organizar)
+botao.pack(pady=20)
+
+janela.mainloop()
