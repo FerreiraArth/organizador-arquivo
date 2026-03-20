@@ -22,7 +22,7 @@ Projeto de automação desenvolvido em Python para organizar arquivos automatica
 
 - [ ] Separar aquivos por datas
 - [x] Versão automatica (Rodar Sozinho)
-- [ ] Botão escolher pasta
+- [x] Botão escolher pasta
 - [ ] Versão com interface
 - [ ] Transformar em app executavel (.exe)
 
