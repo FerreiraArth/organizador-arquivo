@@ -18,6 +18,7 @@ caminho = ""
 def selecionar_pasta():
     global caminho
     caminho = filedialog.askdirectory()
+
     if caminho:
         label_caminho.config(text=f"Pasta: {caminho}")
 
@@ -30,25 +31,34 @@ def organizar():
     log_text.delete(1.0, tk.END)
     arquivos_movidos = 0
 
-
     try:
         for arquivo in os.listdir(caminho):
             caminho_arquivo = os.path.join(caminho, arquivo)
 
             #ignora pastas
             if os.path.isfile(caminho_arquivo):
-                _, extensao = os.path.splitext(arquivo)
+                nome, extensao = os.path.splitext(arquivo)
 
                 for pasta, extensoes in pastas.items():
-
                     if extensao.lower() in extensoes: 
                         caminho_pasta = os.path.join(caminho, pasta)
 
                         #Cria pasta se não existir
                         if not os.path.exists(caminho_pasta):
                             os.mkdir(caminho_pasta)
+
+                        destino = os.path.join(caminho_pasta, arquivo)
                         
-                        shutil.move(caminho_arquivo, os.path.join(caminho_pasta, arquivo))
+                        #Proteção contra sobrescritas
+                        contador = 1 
+                        while os.path.exists(destino):
+                            novo_nome = f"{nome}_{contador}{extensao}"
+                            destino = os.path.join(caminho_pasta, novo_nome)
+                            contador += 1
+
+                        shutil.move(caminho_arquivo, destino)
+
+                        log_text.insert(tk.END, f"Movido: {arquivo} → {os.path.basename(destino)}\n")
                         arquivos_movidos += 1
 
         messagebox.showinfo("Sucesso", f"{arquivos_movidos} arquivos organizados!")
@@ -59,19 +69,19 @@ def organizar():
 #INTERFACE
 janela = tk.Tk()
 janela.title("Organizador de Arquivo")
-janela.geometry("300x200")
+janela.geometry("500x400")
 
-titulo = tk.Label(janela, text="Organizador de Arquivo", font=("Terminal", 12)) 
+titulo = tk.Label(janela, text="Organizador de Arquivo", font=("Terminal", 16, "bold")) 
 titulo.pack(pady=20)
 
 botao_pasta = tk.Button(janela, text="Selecionar Pasta", command=selecionar_pasta)
 botao_pasta.pack(pady=5)
 
-label_caminho = tk.Label(janela, text="Nenhuma pasta selecionada", fg = "gray")
+label_caminho = tk.Label(janela, text="Nenhuma pasta selecionada", fg="gray")
 label_caminho.pack(pady=10)
 
-botao = tk.Button(janela, text="Organizar Arquivos", font=("Terminal", 12), command=organizar)
-botao.pack(pady=20)
+botao_organizador= tk.Button(janela, text="Organizar Arquivos", font=("Terminal", 12), command=organizar)
+botao_organizador.pack(pady=10)
 
 #Area de log
 log_text = tk.Text(janela, height=10, width=50)
