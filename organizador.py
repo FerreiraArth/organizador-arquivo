@@ -47,10 +47,10 @@ janela = tk.Tk()
 janela.title("Organizador de Arquivo")
 janela.geometry("300x200")
 
-titulo = tk.Label(janela, text="Organizador de Arquivo", font=("Arial", 12)) #Pompieri
+titulo = tk.Label(janela, text="Organizador de Arquivo", font=("Terminal", 12)) #
 titulo.pack(pady=20)
 
-botao = tk.Button(janela, text="Organizar Arquivos", command=organizar)
+botao = tk.Button(janela, text="Organizar Arquivos", font=("Terminal", 12), command=organizar)
 botao.pack(pady=20)
 
 janela.mainloop()
